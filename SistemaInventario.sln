@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.32630.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaInventario", "SistemaInventario\SistemaInventario.csproj", "{F966D743-3239-4D85-BFA0-5173D29A9E5D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8E321BA5-9A81-4B1F-9559-EECB302886A0} = {8E321BA5-9A81-4B1F-9559-EECB302886A0}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaInventario.AccesoDatos", "SistemaInventario.AccesoDatos\SistemaInventario.AccesoDatos.csproj", "{161C2419-7212-4774-B741-D5CA556A6525}"
 EndProject
