@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 namespace SistemaInventario.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class BodegaController : Controller
+    public class MarcaController : Controller
     {
 
         private readonly IUnidadTrabajo _unidadTrabajo;
 
-        public BodegaController(IUnidadTrabajo unidadTrabajo)
+        public MarcaController(IUnidadTrabajo unidadTrabajo)
         {
             _unidadTrabajo = unidadTrabajo;
         }
@@ -26,22 +26,22 @@ namespace SistemaInventario.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            Bodega bodega = new Bodega();
+            Marca marca = new Marca();
 
             if (id == null)
             {
-                return View(bodega); //crear un nuevo registro
+                return View(marca); //crear un nuevo registro
 
             }
             //para actualizar
-            bodega = _unidadTrabajo.Bodega.Obtener(id.GetValueOrDefault());
+            marca = _unidadTrabajo.Marca.Obtener(id.GetValueOrDefault());
 
-            if (bodega == null)
+            if (marca == null)
             {
                 return NotFound();
             }
 
-            return View(bodega);
+            return View(marca);
         }
 
         #region
@@ -49,40 +49,40 @@ namespace SistemaInventario.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult ObtenerTodos()
         {
-            var todos = _unidadTrabajo.Bodega.ObtenerTodos();
+            var todos = _unidadTrabajo.Marca.ObtenerTodos();
             return Json(new { data = todos });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Bodega bodega)
+        public IActionResult Upsert(Marca marca)
         {
             if (ModelState.IsValid)
             {
-                if (bodega.Id == 0)
+                if (marca.Id == 0)
                 {
-                    _unidadTrabajo.Bodega.Agregar(bodega);
+                    _unidadTrabajo.Marca.Agregar(marca);
                 }
                 else
                 {
-                    _unidadTrabajo.Bodega.Actualizar(bodega);
+                    _unidadTrabajo.Marca.Actualizar(marca);
                 }
 
                 _unidadTrabajo.Guardar();
                 return RedirectToAction(nameof(Index));
             }
-            return View(bodega);
+            return View(marca);
         }
 
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var bodegaDb = _unidadTrabajo.Bodega.Obtener(id);
-            if (bodegaDb == null)
+            var marcaDb = _unidadTrabajo.Marca.Obtener(id);
+            if (marcaDb == null)
             {
                 return Json(new { success = false, message="No se encontro el dato" });
             }
-            _unidadTrabajo.Bodega.Remover(bodegaDb);
+            _unidadTrabajo.Marca.Remover(marcaDb);
             _unidadTrabajo.Guardar();
             return Json(new { success = true, message="Se ha borrado el registro"});
         }

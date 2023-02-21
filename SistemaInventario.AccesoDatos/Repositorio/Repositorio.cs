@@ -86,7 +86,7 @@ namespace SistemaInventario.AccesoDatos.Repositorio
 
         public void RemoverRango(IEnumerable<T> entidad)
         {
-            
+            dbSet.RemoveRange(entidad);
         }
     }
 }
