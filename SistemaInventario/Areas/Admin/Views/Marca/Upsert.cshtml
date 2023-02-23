@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Upsert";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var titulo = "Crear Categoria";
+    var titulo = "Crear Marca";
 }
 
 <form method="post">
@@ -13,6 +13,7 @@
     @if (Model.Id != 0)
     {
         //Actualizar
+        titulo = "Actualizar Marca";
     }
 
     <div class="col-12 border-bottom">
